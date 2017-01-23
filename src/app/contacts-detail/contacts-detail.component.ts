@@ -16,7 +16,8 @@ export class ContactsDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute, private contactsService: ContactsService) { }
 
   ngOnInit() {
-    this.contact = this.contactsService.getContact(this.route.snapshot.params['id']);
+    let contactId = this.route.snapshot.params['id'];
+    this.contactsService.getContact(contactId).subscribe(contact => this.contact = contact);
   }
 
 }
