@@ -39,8 +39,9 @@ export class ContactsService {
       .switchMap(term => this.searchTerm(term));
 
     return this.getContacts()
-    .delay(5000)
-    .takeUntil(searchedContacts$)
+    // if there is delay on the initial list, use takeUntil to prevent that the initial list would overwrite searchresults by typing...
+    //.delay(5000)   fake a delay of 5 seconds...
+    //.takeUntil(searchedContacts$)   drop it if search results are coming in
     .merge(searchedContacts$);
   }
 }
