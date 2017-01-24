@@ -14,6 +14,7 @@ import { APP_ROUTES } from './app.routes';
 import { ContactsDetailComponent } from './contacts-detail/contacts-detail.component';
 import { MASTER_CLASS_DI_CONFIG } from './app.config';
 import { ContactsEditorComponent } from './contacts-editor/contacts-editor.component';
+import { APP_CONFIG_TOKEN } from './app.config';
 
 @NgModule({
   declarations: [ContactsAppComponent, ContactsListComponent, ContactsDetailComponent, ContactsEditorComponent],
@@ -28,7 +29,7 @@ import { ContactsEditorComponent } from './contacts-editor/contacts-editor.compo
   bootstrap: [ContactsAppComponent],
   providers: [
     ContactsService, 
-    {provide: 'APP_CONFIG', useValue: MASTER_CLASS_DI_CONFIG }
+    {provide: APP_CONFIG_TOKEN, useValue: MASTER_CLASS_DI_CONFIG }
   ]
 })
 export class ContactsModule {
