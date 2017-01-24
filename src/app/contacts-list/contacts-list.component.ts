@@ -4,7 +4,11 @@ import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap'; 
+import 'rxjs/add/operator/map'; 
 import 'rxjs/add/operator/merge';
+import 'rxjs/add/operator/last';
+import 'rxjs/add/operator/delay';
+import 'rxjs/add/operator/takeUntil';
 
 import { Contact } from '../models/contact';
 import { ContactsService } from '../contacts.service';
@@ -28,7 +32,8 @@ export class ContactsListComponent implements OnInit {
       .distinctUntilChanged()
       .switchMap(term => this.contactsService.search(term));
 
-    this.contacts = this.contactsService.getContacts().merge(searchedContacts$);
+    //this.contacts = this.contactsService.getContacts().delay(5000).merge(searchedContacts$);
+    this.contacts = this.contactsService.getContacts().delay(5000).takeUntil(searchedContacts$).merge(searchedContacts$);
   }
 
   contactTrackBy(index, contact) {
