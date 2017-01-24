@@ -15,6 +15,9 @@ export class TabsComponent implements AfterContentInit {
 
   ngAfterContentInit() {
     this.select(this.tabs.first);
+    
+    // this.tabs.changes.subscribe...
+    // cool! querylist exposes an Observable to let you react when the tabs change (eg an extra tab is added)
   }
 
   select(tab: TabComponent) {
