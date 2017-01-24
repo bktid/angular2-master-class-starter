@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { TabComponent } from '../tab/tab.component';
 
@@ -7,21 +7,16 @@ import { TabComponent } from '../tab/tab.component';
   templateUrl: './tabs.component.html',
   styleUrls: ['./tabs.component.css']
 })
-export class TabsComponent implements OnInit {
+export class TabsComponent {
 
   tabs: TabComponent[] = [];
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
   addTab(tab: TabComponent) {
-    this.tabs.push(tab);
-
-    if (this.tabs.length === 1) {
+    if (this.tabs.length === 0) {
       this.select(tab);
     }
+
+    this.tabs.push(tab);
   }
 
   select(tab: TabComponent) {
