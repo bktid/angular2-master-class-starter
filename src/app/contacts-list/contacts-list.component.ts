@@ -25,14 +25,7 @@ export class ContactsListComponent implements OnInit {
   constructor(private contactsService: ContactsService) {}
 
   ngOnInit() {
-    let searchedContacts$ = this.terms$
-      .debounceTime(400)
-      .distinctUntilChanged()
-      .switchMap(term => this.contactsService.search(term));
-
-    this.contacts = this.contactsService.getContacts().delay(5000)
-    .takeUntil(searchedContacts$)
-    .merge(searchedContacts$);
+    this.contacts = this.contactsService.search(this.terms$, 1000);
   }
 
   contactTrackBy(index, contact) {
