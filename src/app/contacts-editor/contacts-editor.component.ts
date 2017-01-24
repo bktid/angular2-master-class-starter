@@ -18,8 +18,10 @@ export class ContactsEditorComponent implements OnInit {
 
   ngOnInit() {
     let contactId = this.route.snapshot.params['id'];
-    this.contactsService.getContact(contactId).subscribe(contact => this.contact = contact);
-    this.eventBus.emit('appTitleChange', 'Edit Contact');
+    this.contactsService.getContact(contactId).subscribe(contact => {
+      this.contact = contact
+      this.eventBus.emit('appTitleChange', 'Edit Contact ' + this.contact.name);
+    });
   }
 
   save(contact: Contact) {
