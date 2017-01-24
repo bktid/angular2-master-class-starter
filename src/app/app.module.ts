@@ -18,6 +18,7 @@ import { APP_CONFIG_TOKEN } from './app.config';
 import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-detail-view.component';
 import { TabsComponent } from './tabs/tabs/tabs.component';
 import { TabComponent } from './tabs/tab/tab.component';
+import { EventBusService } from './event-bus.service';
 
 @NgModule({
   declarations: [ContactsAppComponent, ContactsListComponent, ContactsDetailComponent, ContactsEditorComponent, ContactsDetailViewComponent, TabsComponent, TabComponent],
@@ -32,7 +33,8 @@ import { TabComponent } from './tabs/tab/tab.component';
   bootstrap: [ContactsAppComponent],
   providers: [
     ContactsService, 
-    {provide: APP_CONFIG_TOKEN, useValue: MASTER_CLASS_DI_CONFIG }
+    {provide: APP_CONFIG_TOKEN, useValue: MASTER_CLASS_DI_CONFIG },
+    EventBusService
   ]
 })
 export class ContactsModule {

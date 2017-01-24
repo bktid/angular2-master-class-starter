@@ -10,6 +10,7 @@ import 'rxjs/add/operator/takeUntil';
 
 import { Contact } from '../models/contact';
 import { ContactsService } from '../contacts.service';
+import { EventBusService } from '../event-bus.service';
 
 @Component({
   selector: 'trm-contacts-list',
@@ -22,10 +23,11 @@ export class ContactsListComponent implements OnInit {
 
   terms$ = new Subject<string>();
 
-  constructor(private contactsService: ContactsService) {}
+  constructor(private contactsService: ContactsService, private eventBus: EventBusService) {}
 
   ngOnInit() {
     this.contacts = this.contactsService.search(this.terms$, 1000);
+    this.eventBus.emit('appTitleChange', 'Contact List');
   }
 
   contactTrackBy(index, contact) {
