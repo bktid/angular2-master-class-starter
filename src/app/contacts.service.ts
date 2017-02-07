@@ -27,6 +27,10 @@ export class ContactsService {
     return this.http.put(this.appConfig.apiEndpoint + 'contacts/' + contact.id, contact)
   }
 
+  addContact(contact: Contact) {
+    return this.http.post(this.appConfig.apiEndpoint + 'contacts', contact)
+  }
+
   private searchTerm(term: string): Observable<any> {
     return this.http.get(`${this.appConfig.apiEndpoint}search?text=${term}`)
     .map(respone => respone.json().items);
