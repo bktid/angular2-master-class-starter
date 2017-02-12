@@ -8,13 +8,18 @@
       </md-card-title-group>
       <md-card-content>
         <div fxLayout="column">
-            <!-- opgelet: de color moet tussen single quotes teruggegeven worden! -->
+          <!-- opgelet: de color moet tussen single quotes teruggegeven worden! -->
           <md-input-container fxFlex [dividerColor]="name.errors ? 'warn' : 'primary'" >
-            <!-- #name="ngModel" is een reference variable die je nodig hebt om te gebruiken in md-hint enzo -->
-            <!-- maar wat doet name="name" nog en waarom werkt het niet zonder? -->
-            <!-- in de eindoplossing doen ze het op een heel andere manier... -->
+          <!-- https://angular.io/docs/ts/latest/guide/forms.html -->
+          <!-- name="name" | Each input element has a name property that is required by Angular forms to register the control with the form. -->
+          <!-- #name="ngModel" | is een reference variable die je nodig hebt om te gebruiken in md-hint enzo.
+               We need a template reference variable to access the input box's Angular control from within the template. 
+               Here we created a variable called name and gave it the value "ngModel".
+               Why "ngModel"? A directive's exportAs property tells Angular how to link the reference variable to the directive. 
+               We set name to ngModel because the ngModel directive's exportAs property happens to be "ngModel". -->
+          <!-- in de thoughtram eindoplossing doen ze het trouwens op een heel andere manier... -->
             <input md-input placeholder="Name" name="name" #name="ngModel" ngModel required minlength="3">
-            <!-- in de eindoplossing doen ze het in 1 md-hint met template tags... -->
+            <!-- in de thoughtram eindoplossing doen ze het in 1 md-hint met template tags... -->
             <md-hint align="end" *ngIf="!name.valid && !name.pristine && name.errors.required">
               Gelieve een naam in te vullen
             </md-hint>
