@@ -27,8 +27,12 @@
               De naam moet minimum {{name.errors.minlength.requiredLength}} tekens lang zijn, maar was {{name.errors.minlength.actualLength}}
             </md-hint>
           </md-input-container>
-          <md-input-container fxFlex>
-            <input md-input placeholder="Email" name="email" ngModel>
+          <md-input-container fxFlex [dividerColor]="email.errors ? 'accent' : 'primary'" >
+            <!-- moet overeenkomen met de selectors in de @Directive, dus het benodigde attribute is hier niet de function, maar de selector -->
+            <input md-input placeholder="Email" name="email" #email="ngModel" ngModel trmValidateEmail>
+            <md-hint align="end" *ngIf="!email.valid && !email.pristine">
+              Gelieve een geldig e-mailadres in te vullen
+            </md-hint>
           </md-input-container>
           <md-input-container fxFlex>
             <input md-input placeholder="Birthday" name="birthday" type="date" ngModel>
