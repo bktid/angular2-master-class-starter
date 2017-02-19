@@ -17,6 +17,12 @@ $ cd angular2-master-class-starter
 $ npm install
 ```
 
+Start the rest api backend by executing:
+
+```
+$ npm run rest-api
+```
+
 Then run the application by executing:
 
 ```

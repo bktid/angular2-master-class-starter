@@ -48,4 +48,9 @@ export class ContactsService {
     //.takeUntil(searchedContacts$)   drop it if search results are coming in
     .merge(searchedContacts$);
   }
+
+  isEmailAvailable(email: string) {
+    return this.http.get(`${this.appConfig.apiEndpoint}check-email?email=${email}`)
+    .map(response => response.json());
+  }
 }

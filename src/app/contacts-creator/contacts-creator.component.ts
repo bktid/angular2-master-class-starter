@@ -20,6 +20,12 @@ export class ContactsCreatorComponent implements OnInit {
     this.contactsService.addContact(contact).subscribe(() => this.goToContactList());
   }
 
+  // goeie truuk om object te loggen en te kunnen inspecteren
+  // gebruik dan {{printme(email.errors)}} in de html
+  printme(objectToInspect) {
+    console.log(objectToInspect);
+  }
+
   private goToContactList() {
     this.router.navigate(['']);
   }

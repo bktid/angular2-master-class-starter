@@ -5,7 +5,7 @@ const VALID_EMAIL = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9]
 
 //Waarom zit dit niet IN de class???
 export function validateEmail(c: FormControl) {
-  return (VALID_EMAIL.test(c.value)) ? null : { valdiateEmail: { valid: false }};
+  return (VALID_EMAIL.test(c.value)) ? null : { validateEmail: { valid: false }};
 }
 
 @Directive({
