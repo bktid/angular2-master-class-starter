@@ -5,7 +5,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { OpaqueToken } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ContactsAppComponent } from './contacts.component';
 import { ContactsService } from './contacts.service';
@@ -31,7 +31,8 @@ import { EmailAvailabilityValidatorDirective } from './email-availability-valida
     FlexLayoutModule.forRoot(),
     RouterModule.forRoot(APP_ROUTES),
     HttpModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
   ],
   bootstrap: [ContactsAppComponent],
   providers: [

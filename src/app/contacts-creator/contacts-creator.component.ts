@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { ContactsService } from '../contacts.service';
 import { Contact } from '../models/contact';
+import { validateEmail } from '../email-validator.directive';
+import { checkEmailAvailability } from '../email-availability-validator.directive';
 
 @Component({
   selector: 'trm-contacts-creator',
@@ -11,9 +14,23 @@ import { Contact } from '../models/contact';
 })
 export class ContactsCreatorComponent implements OnInit {
 
-  constructor(private contactsService: ContactsService, private router: Router) { }
+  contactsForm: FormGroup;
+
+  constructor(private contactsService: ContactsService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.contactsForm = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', validateEmail, checkEmailAvailability(this.contactsService)],
+      birthday: '',
+      phone: '',
+      website: '',
+      address: this.formBuilder.group({
+        street: '',
+        zip: '',
+        city: '',
+      })
+    })  
   }
 
   save(contact: Contact) {

@@ -3,6 +3,17 @@ import { FormControl, NG_ASYNC_VALIDATORS } from '@angular/forms';
 
 import { ContactsService } from './contacts.service';
 
+// bij async validators kan je dus wel de logica IN de klasse steken...
+// maar nu we refactoren naar reactive forms, moet ik ze toch weer exporten :-(
+export function checkEmailAvailability(contactsService: ContactsService) {
+    return (c: FormControl) => {
+      return contactsService.isEmailAvailable(c.value)
+        .map(response => !response.error ? null : {
+          emailTaken: true
+        });
+    };
+}
+
 @Directive({
   selector: '[trmEmailAvailabilityValidator][ngModel]',
   providers: [
@@ -21,17 +32,7 @@ export class EmailAvailabilityValidatorDirective {
   _validate: Function;
 
   constructor(contactsService: ContactsService) {
-    this._validate = this.checkEmailAvailability(contactsService);
-  }
-
-  // bij async validators kan je dus wel de logica IN de klasse steken...
-  private checkEmailAvailability(contactsService: ContactsService) {
-    return (c: FormControl) => {
-      return contactsService.isEmailAvailable(c.value)
-        .map(response => !response.error ? null : {
-          emailTaken: true
-        });
-    };
+    this._validate = checkEmailAvailability(contactsService);
   }
 
   // is dit een name by convention?
