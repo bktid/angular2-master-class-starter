@@ -17,11 +17,20 @@ export class ContactsDetailViewComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router, private contactsService: ContactsService, private eventBus: EventBusService) { }
 
   ngOnInit() {
-    let contactId = this.route.snapshot.params['id'];
-    this.contactsService.getContact(contactId).subscribe(contact => {
-      this.contact = contact
-      this.eventBus.emit('appTitleChange', 'Detail for ' + this.contact.name);
-    });    
+    // this.route.snapshot.params... werkt niet meer omdat deze component gereused wordt in da master detail ding
+    // daarom gaat de ngOnInit niet meer af telkens je op een andere detail komt
+    // bijgevolg moeten we subscriben zoals hieronder
+    this.route.params.subscribe(params => {
+      let contactId = params['id'];
+      this.contactsService.getContact(contactId).subscribe(contact => {
+        this.contact = contact
+        this.eventBus.emit('appTitleChange', 'Detail for ' + this.contact.name);
+      });    
+    });
+    // thoughtram fuckers gebruiken weer die mottige switchmap
+    // this.route.params
+    //     .switchMap(params => this.contactsService.getContact(params['id']))
+    //     .subscribe(contact => this.contact = contact);  }
   }
 
   navigateToEditor(contact: Contact) {
