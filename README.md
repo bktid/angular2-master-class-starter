@@ -41,4 +41,3 @@ Christoph & Pascal & Thomas
 
 * de link naar new werkte niet meer --> kwam omdat deze route nu lager staat dan /contact/:id, waardoor "new" als een id wordt gezien :-/
 * de mannen van thoughtram geven in de contact-list.component nog een style aan het active contact via: routerLinkActive="active"
-* wat is nog het verschil tussen de switchmap oplossing en mijn oplossing?

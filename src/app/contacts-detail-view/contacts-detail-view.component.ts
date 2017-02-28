@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import 'rxjs/add/operator/mergeMap'; 
+
 import { ContactsService } from '../contacts.service';
 import { Contact } from '../models/contact';
 import { EventBusService } from '../event-bus.service';
@@ -27,7 +29,25 @@ export class ContactsDetailViewComponent implements OnInit {
         this.eventBus.emit('appTitleChange', 'Detail for ' + this.contact.name);
       });    
     });
-    // thoughtram fuckers gebruiken weer die mottige switchmap
+
+    // hmmm... een dubbele subscribe... dit kan mooier geschreven worden:
+    // this.route.params
+    //   .map(params => this.contactsService.getContact(params['id']))
+    //   .subscribe(contact => {
+    //     this.contact = contact
+    //     this.eventBus.emit('appTitleChange', 'Detail for ' + this.contact.name);
+    //   });
+
+    // maar dit werkt niet, want je wisselt Observable<params> om voor Observable<Observable<Contact>>
+    // we moeten dus flatmappen    
+    this.route.params
+      .flatMap(params => this.contactsService.getContact(params['id']))
+      .subscribe(contact => {
+        this.contact = contact
+        this.eventBus.emit('appTitleChange', 'Detail for ' + this.contact.name);
+      });
+    
+    // en de thoughtram mannen gebruiken weer die mottige switchmap
     // this.route.params
     //     .switchMap(params => this.contactsService.getContact(params['id']))
     //     .subscribe(contact => this.contact = contact);  }
