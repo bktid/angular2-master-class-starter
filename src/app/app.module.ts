@@ -12,9 +12,7 @@ import { ContactsService } from './contacts.service';
 import { ContactsListComponent } from './contacts-list/contacts-list.component';
 import { APP_ROUTES } from './app.routes';
 import { ContactsDetailComponent } from './contacts-detail/contacts-detail.component';
-import { MASTER_CLASS_DI_CONFIG } from './app.config';
 import { ContactsEditorComponent } from './contacts-editor/contacts-editor.component';
-import { APP_CONFIG_TOKEN } from './app.config';
 import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-detail-view.component';
 import { TabsComponent } from './tabs/tabs/tabs.component';
 import { TabComponent } from './tabs/tab/tab.component';
@@ -24,6 +22,8 @@ import { EmailValidatorDirective } from './email-validator.directive';
 import { EmailAvailabilityValidatorDirective } from './email-availability-validator.directive';
 import { ContactsDashboardComponent } from './contacts-dashboard/contacts-dashboard.component';
 import { AboutComponent } from './about/about.component';
+import { APP_CONFIG_TOKEN, MASTER_CLASS_DI_CONFIG } from './app.config';
+import { confirmNavigationGuard } from './app.guards';
 
 @NgModule({
   declarations: [ContactsAppComponent, ContactsListComponent, ContactsDetailComponent, ContactsEditorComponent, ContactsDetailViewComponent, TabsComponent, TabComponent, ContactsCreatorComponent, EmailValidatorDirective, EmailAvailabilityValidatorDirective, ContactsDashboardComponent, AboutComponent],
@@ -40,7 +40,8 @@ import { AboutComponent } from './about/about.component';
   providers: [
     ContactsService, 
     {provide: APP_CONFIG_TOKEN, useValue: MASTER_CLASS_DI_CONFIG },
-    EventBusService
+    EventBusService,
+    {provide: 'CONFIRM_NAVIGATION_GUARD', useValue: confirmNavigationGuard }
   ]
 })
 export class ContactsModule {
