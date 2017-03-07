@@ -14,6 +14,8 @@ export class ContactsEditorComponent implements OnInit {
 
   contact: Contact = <Contact>{ address: {}};
 
+  saveWasClicked: boolean = false;
+
   constructor(private route: ActivatedRoute, private router: Router, private contactsService: ContactsService, private eventBus: EventBusService) { }
 
   ngOnInit() {
@@ -25,6 +27,7 @@ export class ContactsEditorComponent implements OnInit {
   }
 
   save(contact: Contact) {
+    this.saveWasClicked = true;
     this.contactsService.updateContact(contact).subscribe(() => this.goToDetails());
   }
 
@@ -37,6 +40,5 @@ export class ContactsEditorComponent implements OnInit {
       relativeTo: this.route
     });
   }
-
 
 }

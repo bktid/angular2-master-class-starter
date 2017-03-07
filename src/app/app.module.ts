@@ -23,7 +23,7 @@ import { EmailAvailabilityValidatorDirective } from './email-availability-valida
 import { ContactsDashboardComponent } from './contacts-dashboard/contacts-dashboard.component';
 import { AboutComponent } from './about/about.component';
 import { APP_CONFIG_TOKEN, MASTER_CLASS_DI_CONFIG } from './app.config';
-import { confirmNavigationGuard } from './app.guards';
+import { confirmNavigationGuard } from './contacts-editor/contacts-editor-guards';
 
 @NgModule({
   declarations: [ContactsAppComponent, ContactsListComponent, ContactsDetailComponent, ContactsEditorComponent, ContactsDetailViewComponent, TabsComponent, TabComponent, ContactsCreatorComponent, EmailValidatorDirective, EmailAvailabilityValidatorDirective, ContactsDashboardComponent, AboutComponent],
