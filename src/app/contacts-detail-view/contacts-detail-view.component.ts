@@ -22,13 +22,13 @@ export class ContactsDetailViewComponent implements OnInit {
     // this.route.snapshot.params... werkt niet meer omdat deze component gereused wordt in da master detail ding
     // daarom gaat de ngOnInit niet meer af telkens je op een andere detail komt
     // bijgevolg moeten we subscriben zoals hieronder
-    this.route.params.subscribe(params => {
-      let contactId = params['id'];
-      this.contactsService.getContact(contactId).subscribe(contact => {
-        this.contact = contact
-        this.eventBus.emit('appTitleChange', 'Detail for ' + this.contact.name);
-      });    
-    });
+    // this.route.params.subscribe(params => {
+    //   let contactId = params['id'];
+    //   this.contactsService.getContact(contactId).subscribe(contact => {
+    //     this.contact = contact
+    //     this.eventBus.emit('appTitleChange', 'Detail for ' + this.contact.name);
+    //   });    
+    // });
 
     // hmmm... een dubbele subscribe... dit kan mooier geschreven worden:
     // this.route.params
@@ -40,8 +40,16 @@ export class ContactsDetailViewComponent implements OnInit {
 
     // maar dit werkt niet, want je wisselt Observable<params> om voor Observable<Observable<Contact>>
     // we moeten dus flatmappen    
-    this.route.params
-      .flatMap(params => this.contactsService.getContact(params['id']))
+    // this.route.params
+    //   .flatMap(params => this.contactsService.getContact(params['id']))
+      // .subscribe(contact => {
+      //   this.contact = contact
+      //   this.eventBus.emit('appTitleChange', 'Detail for ' + this.contact.name);
+      // });
+
+    // oplossing met resolvers:
+    this.route.data
+      .map(data => data['contact'])
       .subscribe(contact => {
         this.contact = contact
         this.eventBus.emit('appTitleChange', 'Detail for ' + this.contact.name);

@@ -13,7 +13,11 @@ export const APP_ROUTES = [
       component: ContactsDashboardComponent,
       children: [
         { path: '', redirectTo: 'contact/0', pathMatch: 'full' },
-        { path: 'contact/:id', component: ContactsDetailViewComponent },
+        { 
+          path: 'contact/:id', 
+          component: ContactsDetailViewComponent,
+          resolve: { contact: ContactsResolver }
+        },
         { 
           path: 'contact/:id/edit', 
           component: ContactsEditorComponent, 

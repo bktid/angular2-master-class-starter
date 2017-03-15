@@ -46,3 +46,9 @@ Christoph & Pascal & Thomas
 
 * opaquetoken werkt niet met navigation guard, zie https://github.com/angular/angular/issues/13774
 * ik vind het maar vies om state te moeten bijhouden, ik zou liever willen kunnen zien waar ik op geklikt heb...
+
+## Ex 4 resolvers
+
+* de detail component werkte niet meer met route.snapshot omdat de ngOnInit niet meer afging wegens reuse van de component.
+* nu we een resolver gebruiken werkt snapshot wel terug, omdat we de code uit de ngOnInit gehaald hebben.
+* de code in ngOnInit wordt nu ook simpeler: je moet niet meer flatmappen op de observable van this.route.params
