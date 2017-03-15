@@ -21,7 +21,6 @@ import { ContactsCreatorComponent } from './contacts-creator/contacts-creator.co
 import { EmailValidatorDirective } from './email-validator.directive';
 import { EmailAvailabilityValidatorDirective } from './email-availability-validator.directive';
 import { ContactsDashboardComponent } from './contacts-dashboard/contacts-dashboard.component';
-import { AboutComponent } from './about/about.component';
 import { APP_CONFIG_TOKEN, MASTER_CLASS_DI_CONFIG } from './app.config';
 import { confirmNavigationGuard } from './contacts-editor/contacts-editor-guards';
 import { ConfirmDeactivationDialogComponent } from './confirm-deactivation-dialog/confirm-deactivation-dialog.component';
@@ -29,7 +28,7 @@ import { CanDeactivateContactsEditorGuard } from './contacts-editor/contacts-edi
 import { ContactsResolver } from './shared/contacts.resolver';
 
 @NgModule({
-  declarations: [ContactsAppComponent, ContactsListComponent, ContactsDetailComponent, ContactsEditorComponent, ContactsDetailViewComponent, TabsComponent, TabComponent, ContactsCreatorComponent, EmailValidatorDirective, EmailAvailabilityValidatorDirective, ContactsDashboardComponent, AboutComponent, ConfirmDeactivationDialogComponent],
+  declarations: [ContactsAppComponent, ContactsListComponent, ContactsDetailComponent, ContactsEditorComponent, ContactsDetailViewComponent, TabsComponent, TabComponent, ContactsCreatorComponent, EmailValidatorDirective, EmailAvailabilityValidatorDirective, ContactsDashboardComponent, ConfirmDeactivationDialogComponent],
   imports: [
     BrowserModule,
     MaterialModule.forRoot(),

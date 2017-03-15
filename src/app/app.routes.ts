@@ -26,6 +26,6 @@ export const APP_ROUTES = [
         }
       ] 
     },
-    { path: 'about', component: AboutComponent },
+    { path: 'about', loadChildren: './about/about.module#AboutModule' },
     { path: '**', redirectTo: '/'}
 ]
