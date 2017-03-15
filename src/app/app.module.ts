@@ -26,6 +26,7 @@ import { APP_CONFIG_TOKEN, MASTER_CLASS_DI_CONFIG } from './app.config';
 import { confirmNavigationGuard } from './contacts-editor/contacts-editor-guards';
 import { ConfirmDeactivationDialogComponent } from './confirm-deactivation-dialog/confirm-deactivation-dialog.component';
 import { CanDeactivateContactsEditorGuard } from './contacts-editor/contacts-editor-can-deactivate';
+import { ContactsResolver } from './shared/contacts.resolver';
 
 @NgModule({
   declarations: [ContactsAppComponent, ContactsListComponent, ContactsDetailComponent, ContactsEditorComponent, ContactsDetailViewComponent, TabsComponent, TabComponent, ContactsCreatorComponent, EmailValidatorDirective, EmailAvailabilityValidatorDirective, ContactsDashboardComponent, AboutComponent, ConfirmDeactivationDialogComponent],
@@ -44,7 +45,8 @@ import { CanDeactivateContactsEditorGuard } from './contacts-editor/contacts-edi
     {provide: APP_CONFIG_TOKEN, useValue: MASTER_CLASS_DI_CONFIG },
     EventBusService,
     {provide: 'CONFIRM_NAVIGATION_GUARD', useValue: confirmNavigationGuard },
-    CanDeactivateContactsEditorGuard
+    CanDeactivateContactsEditorGuard,
+    ContactsResolver,
   ],
   entryComponents: [ConfirmDeactivationDialogComponent]
 })

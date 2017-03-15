@@ -12,18 +12,19 @@ import { EventBusService } from '../event-bus.service';
 })
 export class ContactsEditorComponent implements OnInit {
 
-  contact: Contact = <Contact>{ address: {}};
+  contact: Contact;
 
   saveWasClicked: boolean = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private contactsService: ContactsService, private eventBus: EventBusService) { }
 
   ngOnInit() {
-    let contactId = this.route.snapshot.params['id'];
-    this.contactsService.getContact(contactId).subscribe(contact => {
-      this.contact = contact
-      this.eventBus.emit('appTitleChange', 'Edit Contact ' + this.contact.name);
-    });
+    this.route.data
+      .map(data => data['contact'])
+      .subscribe(contact => {
+        this.contact = contact
+        this.eventBus.emit('appTitleChange', 'Edit Contact ' + this.contact.name);
+      });
   }
 
   save(contact: Contact) {
