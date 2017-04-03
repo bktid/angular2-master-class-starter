@@ -52,3 +52,4 @@ Christoph & Pascal & Thomas
 * de detail component werkte niet meer met route.snapshot omdat de ngOnInit niet meer afging wegens reuse van de component.
 * nu we een resolver gebruiken werkt snapshot wel terug, omdat we de code uit de ngOnInit gehaald hebben.
 * de code in ngOnInit wordt nu ook simpeler: je moet niet meer flatmappen op de observable van this.route.params
+* we moeten in de ngOnInit nog steeds subscriben op route.data, want we hebben nog steeds een ngOnInit die gereused wordt en niet telkens afgaat...
